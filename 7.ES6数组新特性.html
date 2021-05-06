@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 
+    ES6函数新特性有两个:
+      1. 函数的形参可以设置默认值
+        使用: 直接在定义函数时, 让形参 = 默认值即可
+      2. 函数的形参,借助...args接收剩余实参
+        使用: 直接在定义函数时, 形参表示为 ...args
+   -->
+  <script>
+    {
+      /* 
+        (1) 给形参设置默认值
+      */
+      function fn(a = 1, b = 2) {
+        console.log(a, b);
+      }
+  
+      fn();//1 2
+  
+      fn('hello'); //'hello' 2
+  
+      fn('hello','world') //'hello' 'world'
+    }
+
+    {
+      /* 
+        (2) 形参剩余参数使用
+      */
+     function fn(a,b,...arg)
+    }
+  </script>
+</body>
+
+</html>

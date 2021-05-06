@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 
+    特别注意:
+      函数相关的, 首先要搞清楚 (形参和返回值)
+
+    定义箭头函数:
+      let fn = () => {}
+    定义普通函数
+      let fn = function(){}
+
+    箭头函数定义时特性:
+      1. 如果只有一个参数, 可将小括号省略 (多个形参, 则不能省)
+        let fn = x => {}
+        let fn = (x,y) => {}
+      2. 如果函数体中, 只有一个行代码或一个表达式, 则可省略花括号和return
+        let fn = (x,y) => console.log(x,y)  //省花括号
+        let fn = (x,y) => x  //省花括号, 省return 其相当于 let fn = (x,y) {return x}
+        
+    理解:
+      1. 如果只有一个的情况下 (形参, 函数体代码行数), 是可以省略括号的
+      2. 如果怎么省略, 形参一定要有, 有返回值时(特殊情况下return可省)
+
+      3. 箭头符号 => 表示将[参数]传入到后面的[块作用域]中进行处理
+   -->
+  <script>
+    {
+      // 传统函数定义 ES5
+      function fn1() {
+        console.log(1);
+      }
+      fn1(); //1
+      let fn2 = function () {
+        console.log(2);
+      }
+      fn2(); //2
+    }
+    console.log("-------------------------------");
+
+    {
+      // ES6箭头函数定义
+      // (1) 没有形参时, 定义箭头函数的模板  (没有形参时, 小括号不能省)
+      let fn1 = () => {
+        console.log(1);
+      }
+      fn1(); //1
+    }
+    console.log("------------------------------");
+    {
+      // (2) 只有一个形参时, 定义箭头函数的模板  (一个形参时, 小括号可以省)
+      let fn1 = x => {
+        console.log(x);
+      }
+      fn1(2); //2
+
+      let fn2 = x => {
+        return x
+      }
+      console.log(fn2(3)); //3
+    }
+    console.log("---------------------------------");
+    {
+      //(3) 函数体中只有一行代码, 或者只有一个表达式时  (函数体只有一行代码时, 可以省略大括号和return)
+      // a. 省大括号
+      let fn1 = (x,y) => console.log(x,y);
+      fn1(1,2); //1 2
+      // b. 省大括号和return
+      let fn2 = x => x + 1;
+      console.log(fn2(4)); //5
+    }
+
+
+  </script>
+</body>
+
+</html>

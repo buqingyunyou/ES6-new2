@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+  </ul>
+  <!-- 
+    数组静态方法:
+      (1) 将伪数组 -> 数组 (转数组后, 可以使用数组的方法)
+        Array.from(伪数组)
+        Array.prototype.slice.call(伪数组)
+      (2) 将数字序列 -> 数组
+        Array.of(数字序列)
+
+    遍历数组的三个新方法(分为两步: 第二步: for... of遍历迭代器对象):
+      (1) let keysIterator = arr.keys()  返回由下标组成的迭代器对象
+        第二步: 遍历迭代器对象
+        for(let key of keysIterator){...}
+      (2) let valuesIterator = arr.values() 返回由元素组成的迭代器对象
+        第二步: 使用for...of遍历迭代器
+      (3) let entriesIterator = arr.entries() 返回由 [下标=>元素]组成的迭代器对象 
+
+
+    (重要) find() 和 findIndex()  返回return为true的元素或元素下标
+    (1) find() 找出符合条件的第一个数组元素, 返回该元素
+      arr.find(function(item,index){...})
+    (2) findIndex() 找出符合条件的第一个数组元素, 返回其下标
+      arr.findIndex(function(item,index){...})
+   -->
+
+  <script>
+    {
+
+      let oLis = document.getElementsByTagName('li');
+      console.log(oLis); //HTMLCollection(8) [li, li, li, li, li, li, li, li] 伪数组
+
+      // 方法一: 通过Array.from(伪数组)
+      let newArr = Array.from(oLis);
+      console.log(newArr); //[li, li, li, li, li, li, li, li]
+      // 方法二: 通过借助slice方法
+      let newArr2 = Array.prototype.slice.call(oLis);
+      console.log(newArr2); //[li, li, li, li, li, li, li, li]
+    }
+
+    console.log("---------------------------"); {
+      // 方法一: Array.of(数字序列)
+      let arr1 = Array.of(1, 2, 3, 4);
+      console.log(arr1); //[1, 2, 3, 4]
+
+      // 方法二: 直接加中括号, 即可转数组
+      let arr2 = [1, 2, 3, 4]
+      console.log(arr2); //[1, 2, 3, 4]
+
+    }
+
+    console.log("----------------------------------"); {
+      /* 
+        遍历迭代器: 都是使用for ... of 进行遍历
+      */
+      let arr = ['a', 'b', 'c', 'd', 'e', 'f']
+      // 方法一 keys
+      let keysIterator = arr.keys();
+      console.log(keysIterator); //Array Iterator {}
+      for (let keys of keysIterator) {
+        console.log(keys); // 分别依次输出0 1 2 3 4 5 
+      }
+
+      // 方法二 values
+      let valuesIterator = arr.values();
+      console.log(valuesIterator); //Array Iterator {}
+      for (let values of valuesIterator) {
+        console.log(values); //分别依次数组 'a' 'b' 'c' 'd' 'e' 'f'
+      }
+
+      // 方法三 entries
+      let entriesIterator = arr.entries();
+      for (let entries of entriesIterator) {
+        console.log(entries); //分别依次输出[0, "a"]  [1, "b"] [2, "c"] [3, "d"] [4, "e"] [5, "f"]
+      }
+    }
+
+    console.log("----------------------------------------"); {
+      /* 
+        特别注意: 一旦找到符合条件的元素, 则不会执行下面的代码
+      */
+      // arr.find(cb) /arr.findIndex(cb) 找符合条件的元素或元素下标  (第一个满足条件)
+      let arr = ["a", "b", "c", "d", "e"];
+      let firstTrue = arr.find(function (item, index, arr) {
+        console.log(item,index,arr); //a 0 (5) ["a", "b", "c", "d", "e"]
+        return typeof item === 'string';
+      })
+      console.log(firstTrue); //'a'
+
+      let arr2 = [{name:"xiaowang1"},{name:"xiaowang2"},{name:"xiaowang3"}];
+      let ind = arr2.findIndex(function(item,index,arr){
+        return item.name === 'xiaowang1'
+      })
+      console.log(ind); //0
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /* 
+      1. 扩展运算符  ...
+        作用: 
+          (1) 将数组展开, 将一维数组, 降为0维, 将二维数组, 降为一维
+          (2) 将字符串展开, 将字符串, 转为一个个字符
+        
+    */
+
+    /* 1. 扩展运算符, 用于函数调用 */
+    {
+      let arr = [1, 2, 3]
+
+      function fn(x, y, z) {
+        console.log(x, y, z);
+      }
+
+      fn(...arr); //将 [1,2,3] 展开 -> 1,2,3
+    }
+
+    /* 2. 扩展运算符, 用于将字符串转数组 */
+    {
+      let str = '12sdf234';
+      let newArr = [...str];
+      console.log(newArr); //["1", "2", "s", "d", "f", "2", "3", "4"]
+
+      // let test = (...str); //报错  Unexpected token '...'
+      // console.log(test);
+    }
+
+    /* 3. 扩展运算符, 用于解构赋值 */
+    {
+      let arr = [1,2,3,4]
+      let [a,...rest] = arr;
+      console.log(rest); //[2,3,4]
+    }
+
+    /* 
+      4. 复制数组
+    */
+   {
+     let arr = [1,2,3,4]
+     let newArr = [...arr];
+     console.log(newArr); //[1,2,3,4]
+   }
+
+   /* 
+    5. 合并数组
+   */
+  {
+    let arr1 = [1,2,3,4]
+    let arr2 = ["a","b","c"]
+    let newArr = [...arr1,...arr2];
+    console.log(newArr); //[1, 2, 3, 4, "a", "b", "c"]
+  }
+
+
+
+  </script>
+</body>
+
+</html>

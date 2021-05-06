@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="outer">
+    <div>
+      <p>段落</p>
+      <p>段落</p>
+      <p>段落</p>
+      <span>文本</span>
+    </div>
+  </div>
+
+
+  <script>
+
+    /* 
+      模板字符串: 增强字符串
+        1.使用: 反引号 
+          `sdfsdfwersdfdsfv`
+        2.相对于普通字符串的优势:
+          a. 不需要使用'+变量+'方式拼接字符串, 而是使用  ${变量名} , 直接插入到字符串中即可
+          b. 可以换行, 不需要使用转义符转义
+          c. 可以嵌套 单引号, 双引号
+        注意:
+          ${} 中, 可以写js表达式
+            如:
+            1. ${变量名}
+            2. ${常量名}
+            3. ${fn()}  函数调用
+            4. ${1}     字面量
+            5. ${1+1}   运算表达式
+        
+
+      js表达式:
+        有返回值, 就叫表达式
+        通常由:
+          (1) 变量, 常量 (会返回容器中保存或引用的值)
+          (2) 字面量(函数, 对象, 数组, 字符串, 数字, null, undefined, 布尔值等)
+          (3) 函数调用, 有返回值
+          (4) 各类运算 (如:三元运算, 成员访问[点操作符, 中括号操作符等], 加减乘除, 逻辑与或非等运算等)
+
+      表达式和语句区别:
+        1. 表达式有返回值
+        2. 语句没有返回值
+          如: for循环, while循环, do..while循环, switch分支, if分支语句等
+
+
+
+    */
+    let data = {
+      message:{
+        name: 'zhangsan',
+        age:19,
+        address:'深圳',
+        phone:110
+      }
+    }
+
+    // 获取元素盒子
+    let oOuter = document.getElementsByClassName('outer')[0];
+    // 动态添加html
+    oOuter.innerHTML = `<div>
+                          <p>${data.message.name}</p>
+                          <p>${data.message.age}</p>
+                          <p>${data.message.address}</p>
+                          <span>${data.message.phone}</span>
+                        </div>`;
+
+
+    /* 
+      增强字符串的使用:
+        ${函数调用}
+    */
+    {
+      function fn (){
+        return 'hello';
+      }
+      let str = `${fn()} world`
+      console.log(str); //'hello world'
+    }
+  </script>
+</body>
+
+</html>

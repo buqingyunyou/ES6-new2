@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 
+    扩展运算符 ...
+      根据其功能, 我们可以称之为 展开运算符
+
+      rest参数的逆运算, 将一个数组转为, 用逗号分隔的 [参数序列]
+
+      1. 可以展开 [字符串]
+        let str = 'abc'
+        console.log([...str]) //
+      2. 可以展开 [数组]
+      3. 不能直接展开 [对象], 可以通过对象解构赋值方式, 拿到对象中的属性
+        let {a,b,c,...rest} = obj
+   -->
+
+  <!-- 
+    中括号操作符: 
+      [js表达式]
+       -- 可以将js表达式中进行运算, 拿到返回值
+
+    -->
+  <script>
+    {
+      // (1) ... 展开数组
+      let arr = [1, 2, 3, 4]
+      console.log([...arr]); // [1,2,3,4]
+
+      // 扩展运算符, 将数组转为, 以逗号分隔的数列
+      console.log(...arr); //1 2 3 4
+
+      // 复制数组
+      let newArr = [...arr] //复制数组
+      console.log(newArr); // [1,2,3,4]
+      // 复制后的新数组, 和原数组不是一个数组
+      console.log(newArr === arr);  //false
+
+      // 合并数组
+      let arr1 = ['a', 'b', 'c']
+      let newArr1 = [...arr, ...arr1];
+      console.log(newArr1); //[1, 2, 3, 4, "a", "b", "c"]
+
+      // 解构赋值
+      let [a, b, c, d] = arr;
+      console.log(a, b, c, d); //1 2 3 4
+
+      // 字符串转数组
+      let str = 'asdfasdf';
+      let newArr2 = [...str];
+      console.log(newArr2); //["a", "s", "d", "f", "a", "s", "d", "f"]
+      console.log([...'asdf']); // ["a", "s", "d", "f"]
+
+    }
+    console.log("-------------------------------------"); {
+      // (2) ... 展开字符串
+      let str = 'abcd'
+      console.log([...str]); //["a", "b", "c", "d"]
+
+      // 字符串转数组
+      let newArr = [...str]; //字符串转数组
+      let newArr1 = str.split('') //字符串转数组
+
+      console.log(newArr1); //["a", "b", "c", "d"]
+      console.log(newArr); //["a", "b", "c", "d"]
+    }
+    console.log("--------------------------------------"); {
+      // (3) 通过对象解构赋值, 
+      let [name, age, gender] = ['zs', 18, 'male'];
+      let obj = {
+        name, //当对象属性名, 与变量名相同时, 可以进行简写
+        age,
+        gender,
+        do() {
+          console.log(1);
+        },
+        hobby: {
+          out: 'climbing',
+          in: 'singing'
+        }
+
+      }
+      console.log(obj); //{name: "zs", age: 18, gender: "male"}
+
+      // let {name,age,...rest} = obj; //报错  因为name,age上面已经声明, 不能重复声明
+
+      // 复制对象 (浅复制)
+      let {
+        ...newObj
+      } = obj;
+      console.log(newObj); //{name: "zs", age: 18, gender: "male"}
+      console.log(newObj === obj); //false
+      console.log(newObj.name === obj.name); //true
+      console.log(newObj.do === obj.do); //true
+      console.log(newObj.hobby === newObj.hobby); //true
+    }
+    console.log("---------------------------------");
+    {
+      // (4) 定义函数时,不确定会传入参数个数时, 形参使用 ...args, 在函数中通过args数组, 可以拿到传入的实参
+      let fn = function (...args) {  //接收剩余参数
+        args.forEach(function (item, index) {
+          console.log(item, index);
+        })
+      }
+      fn("1",'2','3','4');
+    };
+    console.log("------------------------------------");
+    {
+      // (5) 调用函数时, ...将 [数组] 展开为 [参数序列], 传入函数
+      let fn = function(x,y,z){
+        console.log(x,y,z);
+      }
+      let arr = [1,2,3]
+      fn(...arr); //1 2 3
+    }
+  </script>
+</body>
+
+</html>
